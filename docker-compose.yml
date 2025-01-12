@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  mongo_lotus:
+    image: mongo:7.0
+    command: ["--replSet", "rs0", "--bind_ip_all", "--port", "27017"]
+    ports:
+      - "27017:27017"
+    extra_hosts:
+      - "host.docker.internal:172.17.0.1" # Mapeia para o IP do host no Linux
+    healthcheck:
+      test: >
+        echo "try { rs.status() } catch (err) {
+          rs.initiate({
+            _id:'rs0',
+            members:[{_id:0,host:'172.17.0.1:27017'}]
+          })
+        }" | mongosh --port 27017 --quiet
+      interval: 5s
+      timeout: 30s
+      retries: 10
+    volumes:
+      - "mongo1_data:/data/db"
+      - "mongo1_config:/data/configdb"
+
+volumes:
+  mongo1_data:
+  mongo1_config:
