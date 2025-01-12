@@ -1,6 +1,3 @@
-Claro! Aqui está o conteúdo do **README.md** com todos os comandos que você precisa:
-
-```markdown
 # MongoDB com Replica Set e Autenticação no Docker
 
 Este README descreve os passos para configurar o MongoDB com Replica Set e autenticação habilitada utilizando Docker e Docker Compose.
