@@ -14,18 +14,18 @@ Este projeto configura o MongoDB com Replica Set e autenticação habilitada uti
 
 Para configurar a autenticação, crie o usuário root no banco de dados `admin`. No shell do MongoDB, execute o seguinte comando:
 
-```javascript
-use admin
-db.createUser({
-  user: "root",
-  pwd: "example",
-  roles: [{ role: "root", db: "admin" }]
-})
+   ```javascript
+   use admin
+   db.createUser({
+     user: "root",
+     pwd: "example",
+     roles: [{ role: "root", db: "admin" }]
+   })
 
 5. Teste a conexão com o MongoDB usando a string de conexão com autenticação e Replica Set.
 Agora que o usuário foi criado, você pode testar a conexão com a seguinte string de conexão:
-```plaintext
-mongodb://root:example@172.17.0.1:27017/?replicaSet=rs0&authSource=admin
+   ```plaintext
+   mongodb://root:example@172.17.0.1:27017/?replicaSet=rs0&authSource=admin
 
 6. Verifique os logs do contêiner para identificar possíveis erros ou informações relevantes.
 
